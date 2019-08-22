@@ -37,6 +37,6 @@ export class EmployeesListComponent implements OnInit {
     if (confirm(warning)) {
         this.employeeService.deleteEmployee(pEmpId);
     }
-this.router.navigate(['/employeesList']);
+    this.ngOnInit();
   }
 }
