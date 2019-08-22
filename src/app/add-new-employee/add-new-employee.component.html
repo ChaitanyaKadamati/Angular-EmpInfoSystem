@@ -1,3 +1,32 @@
-<p>
-add-new-employee works!
-</p>
+<form #employeeDetails="ngForm" (ngSubmit)="onSubmitData(employeeDetails)">
+	<table>
+		<tr *ngIf="inupdatemode">
+			<td> Emp ID : </td>
+			<td>{{id}}</td>
+		</tr>
+		<tr>
+			<td> FirstName : </td>
+			<td><input type="text" [readonly]="inupdatemode" title="firstname" #firstname="ngModel" ngModel name="firstname" ></td>
+    </tr>
+		<tr>
+			<td> LastName : </td>
+			<td><input type="text" [readonly]="inupdatemode" title="lastname" #lastname="ngModel" ngModel name="lastname" ></td>
+    </tr>
+		<tr>
+			<td> ManagerID : </td>
+			<td><input type="text" title="managerId" #managerId="ngModel" ngModel name="managerId" ></td>
+    </tr>
+		<tr>
+			<td> Hire Date : </td>
+			<td><input type="text" [readonly]="inupdatemode" title="hireDate" #hireDate="ngModel" ngModel name="hireDate" ></td>
+    </tr>
+    <tr>
+      <td colspan='2' style="text-align:center">
+        <button>
+          <span *ngIf="!inupdatemode">Create</span>
+          <span *ngIf="inupdatemode">Update</span>
+        </button>
+        </td>
+    </tr>
+  </table>
+</form>
