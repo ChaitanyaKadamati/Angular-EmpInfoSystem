@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { EmployeesListComponent } from './employees-list/employees-list.component';
 import { AddNewEmployeeComponent } from './add-new-employee/add-new-employee.component';
-
+import { NgMaterialsModule } from './material.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +18,8 @@ import { AddNewEmployeeComponent } from './add-new-employee/add-new-employee.com
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgMaterialsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
