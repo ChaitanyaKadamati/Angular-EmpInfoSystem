@@ -34,6 +34,7 @@ export class EmployeesListComponent implements OnInit {
 
   onUpdate(pEmpId) {
     console.log(pEmpId);
+    this.router.navigate();
   }
 
   onDelete(pEmpId) {

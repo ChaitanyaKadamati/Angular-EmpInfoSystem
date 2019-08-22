@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-new-employee',
@@ -7,13 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddNewEmployeeComponent implements OnInit {
   inupdatemode = false;
-
-  constructor() { }
+  employeeId = null;
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(
+      params => {
+        console.log(params);
+        const selectedEmployeeID =parseInt(params.get('employeeId'));
+        console.log(selectedEmployeeID);
+        if(selectedEmployeeID == -1) {
+          this.inupdatemode = false;
+        } else {
+          this.inupdatemode = true;
+          this.employeeId = selectedEmployeeID;
+        }
+      }
+    );
   }
 
-onSubmitData(formData) {
-  console.log(formData.value);
-}
+  onSubmitData(formData) {
+    console.log(formData.value);
+  }
 }
