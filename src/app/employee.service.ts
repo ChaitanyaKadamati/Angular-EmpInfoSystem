@@ -21,7 +21,7 @@ export class EmployeeService {
     this.empidIndexCounter = parseInt(this.employees[this.employees.length - 1].id) + 1;
   }
 
-  public getObservableEmployees(): Observable<Employee[]> {
+  public getEmployees(): Observable<Employee[]> {
     const mocked: Employee[] = [...this.employees];
     return of(mocked);
   }
@@ -32,10 +32,6 @@ export class EmployeeService {
     if (empsList.length == 1)
       result = empsList[0];
     return result;
-  }
-
-  getEmployees(): Array<Employee> {
-    return { ...this.employees };
   }
 
   insertEmployee(param: Employee): boolean {
