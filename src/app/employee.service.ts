@@ -53,9 +53,11 @@ export class EmployeeService {
   }
 
   deleteEmployee(pEmpID): boolean {
+    console.log('Delete Requested for ' + pEmpID);
     let result: boolean = false;
     let empsList = this.employees.filter(x => x.id == pEmpID);
     if (empsList.length == 1) {
+      console.log('Employees ' + empsList);
       this.employees = empsList;
       result = true;
     }

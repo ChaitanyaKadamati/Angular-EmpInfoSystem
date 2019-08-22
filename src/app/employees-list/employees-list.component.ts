@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EmployeeService, Employee } from '../employee.service';
-
 @Component({
   selector: 'app-employees-list',
   templateUrl: './employees-list.component.html',
@@ -9,7 +9,8 @@ import { EmployeeService, Employee } from '../employee.service';
 export class EmployeesListComponent implements OnInit {
   employees: Array<Employee> = null;
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService,
+  private router:Router) { }
 
   ngOnInit() {
     this.employeeService.getObservableEmployees().subscribe(
@@ -26,4 +27,16 @@ export class EmployeesListComponent implements OnInit {
     );
   }
 
+  onUpdate(pEmpId) {
+    console.log(pEmpId);
+  }
+
+  onDelete(pEmpId) {
+    console.log(pEmpId);
+    var warning = 'Are you sure you want to delete Emp - ' + pEmpId + '?';
+    if (confirm(warning)) {
+        this.employeeService.deleteEmployee(pEmpId);
+    }
+this.router.navigate(['/employeesList']);
+  }
 }
