@@ -21,6 +21,7 @@ export class AddNewEmployeeComponent implements OnInit {
         console.log(selectedEmployeeID);
         if (selectedEmployeeID == -1) {
           this.inupdatemode = false;
+          this.employee = new Employee();
         } else {
           this.inupdatemode = true;
           this.employeeId = selectedEmployeeID;
