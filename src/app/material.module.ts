@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 
-import {} from '@angular/material/datepicker';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
-const requiredModules = [];
+const requiredModules = [MatDatepickerModule];
 
 @NgModule({
   declarations: [],
