@@ -21,12 +21,9 @@ export class EmployeesListComponent implements OnInit {
       }, (err) => {
         console.log('Error : ' + err);
       }, () => {
-        console.log('Recei ' + this.employees.length + ' elements.');
-        console.log();
+        console.log('Received ' + this.employees.length + ' elements.');
       }
     );
-    console.log(typeof this.employees);
-    console.log(this.employees[0].firstname);
   }
 
 }
