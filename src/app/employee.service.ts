@@ -26,12 +26,12 @@ export class EmployeeService {
     return of(mocked);
   }
 
-  getEmployee(pEmpID): Employee {
+  getEmployee(pEmpID): Observable<Employee> {
     let result: Employee = null;
     let empsList = this.employees.filter(x => x.id == pEmpID);
     if (empsList.length == 1)
       result = empsList[0];
-    return result;
+    return of(result);
   }
 
   insertEmployee(param: Employee): boolean {

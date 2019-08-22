@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { EmployeeService, Employee } from '../employee.service';
+
 @Component({
   selector: 'app-employees-list',
   templateUrl: './employees-list.component.html',
@@ -18,7 +20,7 @@ export class EmployeesListComponent implements OnInit {
   }
 
   readEmployeesList() {
-    this.employeeService.getObservableEmployees().subscribe(
+    this.employeeService.getEmployees().subscribe(
       (res) => {
         this.employees = new Array<Employee>();
         for (const i of res) {
