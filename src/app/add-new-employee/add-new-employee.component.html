@@ -6,19 +6,19 @@
 		</tr>
 		<tr>
 			<td> FirstName : </td>
-			<td><input type="text" [readonly]="inupdatemode" title="firstname" #firstname="ngModel" ngModel name="firstname" ></td>
+			<td><input type="text" [readonly]="inupdatemode" title="firstname" #firstname="ngModel" [(ngModel)]="employee.firstname" name="firstname" ></td>
     </tr>
 		<tr>
 			<td> LastName : </td>
-			<td><input type="text" [readonly]="inupdatemode" title="lastname" #lastname="ngModel" ngModel name="lastname" ></td>
+			<td><input type="text" [readonly]="inupdatemode" title="lastname" #lastname="ngModel" [(ngModel)]="employee.lastname"  name="lastname" ></td>
     </tr>
 		<tr>
 			<td> ManagerID : </td>
-			<td><input type="text" title="managerId" #managerId="ngModel" ngModel name="managerId" ></td>
+			<td><input type="text" title="managerId" #managerId="ngModel" [(ngModel)]="employee.mgrid" name="managerId" ></td>
     </tr>
 		<tr>
 			<td> Hire Date : </td>
-			<td><input type="text" [readonly]="inupdatemode" title="hireDate" #hireDate="ngModel" ngModel name="hireDate" ></td>
+			<td><input type="text" [readonly]="inupdatemode" title="hireDate" #hireDate="ngModel" [(ngModel)]="employee.hiredate" name="hireDate" ></td>
     </tr>
     <tr>
       <td colspan='2' style="text-align:center">
