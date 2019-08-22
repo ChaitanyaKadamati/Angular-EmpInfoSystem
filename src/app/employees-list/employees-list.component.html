@@ -14,7 +14,7 @@
     <td>{{e.mgrid}}</td>
     <td>{{e.hiredate | date:'fullDate'}}</td>
     <td>
-      <button [routerLink]="['addNewEmployee',e.id]">Update</button>
+      <button [routerLink]="['/addNewEmployee',e.id]">Update</button>
       <button (click)="onDelete(e.id)">Delete</button>
     </td>
   </tr>
