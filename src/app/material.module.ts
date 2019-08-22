@@ -1,14 +1,12 @@
 import {NgModule} from '@angular/core';
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
-
-const requiredModules = [MatDatepickerModule];
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatNativeDateModule} from '@angular/material/core';
+const requiredModules = [MatDatepickerModule, MatFormFieldModule, MatNativeDateModule];
 
 @NgModule({
-  declarations: [],
   imports: [requiredModules],
-  exports : [requiredModules],
-  providers: [],
-  bootstrap: []
+  exports : [requiredModules]
 })
 export class NgMaterialsModule { }

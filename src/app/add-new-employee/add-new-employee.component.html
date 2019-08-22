@@ -20,10 +20,11 @@
 			<td> Hire Date : </td>
 			<td>
         <mat-form-field>
-  <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
-</mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <br>
         <input type="text" [readonly]="inupdatemode" title="hireDate" #hireDate="ngModel" [(ngModel)]="employee.hiredate" name="hireDate" ></td>
     </tr>
     <tr>
