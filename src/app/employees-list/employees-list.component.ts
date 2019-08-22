@@ -10,9 +10,14 @@ export class EmployeesListComponent implements OnInit {
   employees: Array<Employee> = null;
 
   constructor(private employeeService: EmployeeService,
-  private router:Router) { }
+    private router: Router) { }
 
   ngOnInit() {
+    this.readEmployeesList();
+
+  }
+
+  readEmployeesList() {
     this.employeeService.getObservableEmployees().subscribe(
       (res) => {
         this.employees = new Array<Employee>();
@@ -35,8 +40,13 @@ export class EmployeesListComponent implements OnInit {
     console.log(pEmpId);
     var warning = 'Are you sure you want to delete Emp - ' + pEmpId + '?';
     if (confirm(warning)) {
-        this.employeeService.deleteEmployee(pEmpId);
+      this.employeeService.deleteEmployee(pEmpId);
     }
-    this.ngOnInit();
+    this.readEmployeesList();
+  }
+
+  resetEmpList() {
+    this.employeeService.resetList();
+    this.readEmployeesList();
   }
 }

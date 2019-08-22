@@ -11,7 +11,12 @@ export class EmployeeService {
     this.initialize();
   }
 
-  initialize(): void {
+  public resetList():void {
+    // Only for Dev purpose
+    this.initialize();
+  }
+
+  private initialize(): void {
     this.employees = EmployeeFactory.getEmployees();
     this.empidIndexCounter = parseInt(this.employees[this.employees.length - 1].id) + 1;
   }
@@ -55,14 +60,8 @@ export class EmployeeService {
   deleteEmployee(pEmpID): boolean {
     let result: boolean = false;
     let empsList: Array<Employee> = this.employees.filter(x => x.id != pEmpID);
-    if (empsList.length == 1) {
-      this.employees = empsList;
-      result = true;
-      console.log(this.employees.length);
-      for (let j of this.employees) {
-        console.log(j.id);
-      }
-    }
+    this.employees = empsList;
+    result = true;
     return result;
   }
 
