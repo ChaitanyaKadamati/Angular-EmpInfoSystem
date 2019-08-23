@@ -7,13 +7,14 @@
     <th>Hire Date</th>
     <th>Update Action</th>
   </tr>
-  <tr *ngFor="let e of employees">
+  <tr *ngFor="let e of employees" (dblclick)="doubleClick(e.id)">
     <td>{{e.id}}</td>
     <td>{{e.firstname}}</td>
     <td>{{e.lastname}}</td>
     <td>{{e.mgrid}}</td>
     <td>{{e.hiredate | date:'fullDate'}}</td>
     <td>
+      
       <button [routerLink]="['/addNewEmployee',e.id]">Update</button>
       <button (click)="onDelete(e.id)">Delete</button>
     </td>

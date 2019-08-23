@@ -51,4 +51,8 @@ export class EmployeesListComponent implements OnInit {
     this.employeeService.resetList();
     this.readEmployeesList();
   }
+
+  doubleClick(pEmpID){
+    console.log("Dblclicked - " + pEmpID);
+  }
 }
