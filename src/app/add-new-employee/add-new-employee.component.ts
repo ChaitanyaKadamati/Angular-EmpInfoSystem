@@ -65,13 +65,10 @@ export class AddNewEmployeeComponent implements OnInit {
       } else {
         alert('FailMsg : Employee Already Exists.');
       }
-        console.log('test');
-      if (result) {
-        console.log('NAvigating');
-        this.router.navigate(['/employeesList']);
-      }
     }
-
+    if (result) {
+      this.router.navigate(['/employeesList']);
+    }
     console.log(formData.value);
     console.log(this.employee.mgrid);
   }
