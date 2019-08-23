@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Employee Information Management';
+  version = '1.0.31';
 }
