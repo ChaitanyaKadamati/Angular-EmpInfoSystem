@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { EmployeeService, Employee } from '../employee.service';
 
@@ -12,7 +12,9 @@ export class AddNewEmployeeComponent implements OnInit {
   employee: Employee = null;
   inupdatemode = false;
   employeeId = null;
-  constructor(private route: ActivatedRoute, private employeeService: EmployeeService) { }
+
+  constructor(private route: ActivatedRoute, private employeeService: EmployeeService,
+    private router: Router) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(
@@ -63,8 +65,8 @@ export class AddNewEmployeeComponent implements OnInit {
       } else {
         alert('FailMsg : Employee Already Exists.');
       }
-      if(result) {
-        
+      if (result) {
+        this.router.navigate(['/employeesList']);
       }
     }
 
