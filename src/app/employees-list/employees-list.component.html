@@ -1,22 +1,43 @@
 <table>
-  <tr>
-    <th>Emp ID</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Manager ID</th>
-    <th>Hire Date</th>
-    <th>Update Action</th>
-  </tr>
-  <tr *ngFor="let e of employees" (dblclick)="doubleClick(e.id)">
-    <td>{{e.id}}</td>
-    <td>{{e.firstname}}</td>
-    <td>{{e.lastname}}</td>
-    <td>{{e.mgrid}}</td>
-    <td>{{e.hiredate | date:'fullDate'}}</td>
+	<tr>
+		<th>Emp ID</th>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Manager ID</th>
+		<th>Hire Date</th>
+		<th>Update Action</th>
+	</tr>
+	<tr *ngFor="let e of employees" (dblclick)="doubleClick(e.id)">
+		<td>{{e.id}}</td>
+		<td>
+      <span *ngIf="!e.editEnabled">{{e.firstname}}</span>
+      <span *ngIf="e.editEnabled">
+        <input type="text" name="firstname" [(ngModel)]="e.employeeNewInfo.firstname">
+      </span>
+    </td>
     <td>
-      {{e.editEnabled}}
-      <button (click)="onUpdate(e.id)" >Update</button>
-      <button (click)="onDelete(e.id)">Delete</button>
+      <span *ngIf="!e.editEnabled">{{e.lastname}}</span>
+      <span *ngIf="e.editEnabled">
+        <input type="text" name="lastname" [(ngModel)]="e.employeeNewInfo.lastname">
+      </span>
+    </td>
+    <td>
+      <span *ngIf="!e.editEnabled">{{e.mgrid}}</span>
+      <span *ngIf="e.editEnabled">
+        <input type="text" name="mgrid" [(ngModel)]="e.employeeNewInfo.mgrid">
+      </span>
+    </td>
+    <td>
+      <span *ngIf="!e.editEnabled">{{e.hiredate | date:'fullDate'}}</span>
+      <span *ngIf="e.editEnabled">
+        <input type="text" name="hiredate" [(ngModel)]="e.employeeNewInfo.hiredate">
+      </span>
+    </td>
+    <td>
+      <button *ngIf="e.editEnabled" (click)="onCommitUpdate(e.id)" >Commit</button>
+      <button *ngIf="e.editEnabled" (click)="onCancelUpdate(e.id)" >Cancel</button>
+      <button *ngIf="!e.editEnabled" (click)="onUpdate(e.id)" >Update</button>
+      <button *ngIf="!e.editEnabled" (click)="onDelete(e.id)">Delete</button>
     </td>
   </tr>
 </table>

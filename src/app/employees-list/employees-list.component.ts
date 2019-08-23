@@ -5,7 +5,7 @@ import { EmployeeService, Employee } from '../employee.service';
 
 class EmployeeExtended extends Employee {
   editEnabled: boolean;
-
+  employeeNewInfo: Employee;
   constructor() {
     super();
     this.editEnabled = false;
@@ -24,17 +24,18 @@ export class EmployeesListComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.readEmployeesList();
+    this.updateEmployeesList();
 
   }
 
-  readEmployeesList() {
+  updateEmployeesList() {
     this.employeeService.getEmployees().subscribe(
       (res) => {
         this.employees = new Array<EmployeeExtended>();
         for (const i of res) {
           const tempEmployee = new EmployeeExtended();
           tempEmployee.copyFrom(i);
+          tempEmployee.id = i.id;
           this.employees.push(tempEmployee);
         }
       }, (err) => {
@@ -46,9 +47,23 @@ export class EmployeesListComponent implements OnInit {
   }
 
   onUpdate(pEmpId) {
-    console.log('Log Pointer : ' +pEmpId);
     let emp = this.employees.filter(x => x.id == pEmpId);
     emp[0].editEnabled = true;
+    emp[0].employeeNewInfo = new Employee();
+    emp[0].employeeNewInfo.copyFrom(emp[0]);
+    emp[0].employeeNewInfo.id = emp[0].id;
+  }
+
+  onCommitUpdate(pEmpId) {
+    let emp = this.employees.filter(x => x.id == pEmpId);
+    this.employeeService.updateEmployee(emp[0].employeeNewInfo);
+    this.updateEmployeesList();
+  }
+
+  onCancelUpdate(pEmpId) {
+    let emp = this.employees.filter(x => x.id == pEmpId);
+    emp[0].employeeNewInfo = null;
+    emp[0].editEnabled = false;
   }
 
   onDelete(pEmpId) {
@@ -57,12 +72,12 @@ export class EmployeesListComponent implements OnInit {
     if (confirm(warning)) {
       this.employeeService.deleteEmployee(pEmpId);
     }
-    this.readEmployeesList();
+    this.updateEmployeesList();
   }
 
   resetEmpList() {
     this.employeeService.resetList();
-    this.readEmployeesList();
+    this.updateEmployeesList();
   }
 
   doubleClick(pEmpID) {
