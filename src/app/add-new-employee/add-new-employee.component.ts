@@ -65,7 +65,9 @@ export class AddNewEmployeeComponent implements OnInit {
       } else {
         alert('FailMsg : Employee Already Exists.');
       }
+        console.log('test');
       if (result) {
+        console.log('NAvigating');
         this.router.navigate(['/employeesList']);
       }
     }
