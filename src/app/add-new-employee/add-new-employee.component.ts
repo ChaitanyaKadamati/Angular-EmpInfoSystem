@@ -48,10 +48,24 @@ export class AddNewEmployeeComponent implements OnInit {
   }
 
   onSubmitData(formData) {
+    let result: boolean = false;
     if (this.inupdatemode) {
-      this.employeeService.updateEmployee(this.employee);
+      result = this.employeeService.updateEmployee(this.employee);
+      if (result) {
+        alert('SuccessMsg : Employee details updated.');
+      } else {
+        alert('FailMsg : Update failed.');
+      }
     } else {
-      this.employeeService.insertEmployee(this.employee);
+      result = this.employeeService.insertEmployee(this.employee);
+      if (result) {
+        alert('SuccessMsg : New Employee Created.');
+      } else {
+        alert('FailMsg : Employee Already Exists.');
+      }
+      if(result) {
+        
+      }
     }
 
     console.log(formData.value);
