@@ -47,6 +47,10 @@ export class EmployeesListComponent implements OnInit {
   }
 
   onUpdate(pEmpId) {
+    let activeEmpEdit = this.employees.filter(x => x.editEnabled);
+    if(activeEmpEdit.length ==1 ) {
+      this.onCancelUpdate(activeEmpEdit[0].id);
+    }
     let emp = this.employees.filter(x => x.id == pEmpId);
     emp[0].editEnabled = true;
     emp[0].employeeNewInfo = new Employee();
@@ -82,6 +86,6 @@ export class EmployeesListComponent implements OnInit {
 
   doubleClick(pEmpID) {
     //console.log("Dblclicked - " + pEmpID);
-    tonUpdate(pEmpId);
+    this.onUpdate(pEmpID);
   }
 }
