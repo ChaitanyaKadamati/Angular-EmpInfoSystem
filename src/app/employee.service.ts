@@ -11,7 +11,7 @@ export class EmployeeService {
     this.initialize();
   }
 
-  public resetList():void {
+  public resetList(): void {
     // Only for Dev purpose
     this.initialize();
   }
@@ -78,6 +78,11 @@ export class Employee {
   mgrid: string;
   designation: string;
   hiredate: Date;
+
+  constructor() {
+    this.hiredate = new Date();
+  }
+
   copyFrom(other: Employee) {
     this.firstname = other.firstname;
     this.lastname = other.lastname;

@@ -3,13 +3,22 @@ import { Router } from '@angular/router';
 
 import { EmployeeService, Employee } from '../employee.service';
 
+class EmployeeExtended extends Employee {
+  editEnabled: boolean;
+
+  constructor() {
+    super();
+    this.editEnabled = false;
+  }
+}
+
 @Component({
   selector: 'app-employees-list',
   templateUrl: './employees-list.component.html',
   styleUrls: ['./employees-list.component.css']
 })
 export class EmployeesListComponent implements OnInit {
-  employees: Array<Employee> = null;
+  employees: Array<EmployeeExtended> = null;
 
   constructor(private employeeService: EmployeeService,
     private router: Router) { }
@@ -22,9 +31,11 @@ export class EmployeesListComponent implements OnInit {
   readEmployeesList() {
     this.employeeService.getEmployees().subscribe(
       (res) => {
-        this.employees = new Array<Employee>();
+        this.employees = new Array<EmployeeExtended>();
         for (const i of res) {
-          this.employees.push(i);
+          const tempEmployee = new EmployeeExtended();
+          tempEmployee.copyFrom(i);
+          this.employees.push(tempEmployee);
         }
       }, (err) => {
         console.log('Error : ' + err);
@@ -35,7 +46,9 @@ export class EmployeesListComponent implements OnInit {
   }
 
   onUpdate(pEmpId) {
-    console.log(pEmpId);
+    console.log('Log Pointer : ' +pEmpId);
+    let emp = this.employees.filter(x => x.id == pEmpId);
+    emp[0].editEnabled = true;
   }
 
   onDelete(pEmpId) {
@@ -52,7 +65,7 @@ export class EmployeesListComponent implements OnInit {
     this.readEmployeesList();
   }
 
-  doubleClick(pEmpID){
+  doubleClick(pEmpID) {
     console.log("Dblclicked - " + pEmpID);
   }
 }

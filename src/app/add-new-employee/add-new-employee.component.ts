@@ -25,7 +25,6 @@ export class AddNewEmployeeComponent implements OnInit {
         if (selectedEmployeeID == -1) {
           this.inupdatemode = false;
           this.employee = new Employee();
-          this.employee.hiredate = new Date();
         } else {
           this.inupdatemode = true;
           this.employeeId = selectedEmployeeID;
