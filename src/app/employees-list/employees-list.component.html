@@ -14,7 +14,6 @@
     <td>{{e.mgrid}}</td>
     <td>{{e.hiredate | date:'fullDate'}}</td>
     <td>
-      
       <button [routerLink]="['/addNewEmployee',e.id]">Update</button>
       <button (click)="onDelete(e.id)">Delete</button>
     </td>
@@ -23,4 +22,6 @@
 
 <button (click)="resetEmpList()">Reset Employees List</button>
 <br>
+<div style="font-size:12px">
 Employee Records Count : {{employees.length}}
+</div>
