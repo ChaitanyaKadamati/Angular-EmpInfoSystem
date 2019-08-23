@@ -81,6 +81,7 @@ export class EmployeesListComponent implements OnInit {
   }
 
   doubleClick(pEmpID) {
-    console.log("Dblclicked - " + pEmpID);
+    //console.log("Dblclicked - " + pEmpID);
+    tonUpdate(pEmpId);
   }
 }
