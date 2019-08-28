@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 
 @Component({
@@ -9,10 +9,13 @@ import { AuthenticationService } from '../authentication.service';
 })
 export class AuthenticationComponent implements OnInit {
 
-  constructor(private authService: AuthenticationService) { }
+  constructor(private authService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
     let isUserAuthenticated = this.authService.isUserAuthenticated();
+    if (isUserAuthenticated) {
+      this.router.navigate(['employeesList']);
+    }
   }
 
   openTab(evt, tabName) {
