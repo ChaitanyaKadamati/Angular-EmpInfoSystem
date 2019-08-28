@@ -13,7 +13,6 @@ export class TopBarComponent {
   constructor(private authService: AuthenticationService, private router: Router) { }
 
   logout() {
-    console.log('Logout');
     this.authService.logout();
     this.router.navigate(['']);
   }
