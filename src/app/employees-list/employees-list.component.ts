@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { EmployeeService, Employee } from '../employee.service';
-
+import { AuthenticationService } from '../auth/authentication.service';
+;
 class EmployeeExtended extends Employee {
   editEnabled: boolean;
   employeeNewInfo: Employee;
@@ -21,11 +22,16 @@ export class EmployeesListComponent implements OnInit {
   employees: Array<EmployeeExtended> = null;
 
   constructor(private employeeService: EmployeeService,
+  private authService: AuthenticationService,
     private router: Router) { }
 
   ngOnInit() {
+    let isUserAuthenticated = this.authService.isUserAuthenticated();
+    if(!isUserAuthenticated) {
+      console.log('User Redirected to authentica');
+      this.router.navigate(['/']);
+    }
     this.updateEmployeesList();
-
   }
 
   updateEmployeesList() {
