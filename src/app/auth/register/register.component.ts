@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AuthenticationService } from './authentication.service';
+import { AuthenticationService } from '.../auth/authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +9,7 @@ import { AuthenticationService } from './authentication.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private authService:AuthenticationService) { }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit() {
 
