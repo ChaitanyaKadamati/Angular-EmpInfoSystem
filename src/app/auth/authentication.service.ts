@@ -8,6 +8,10 @@ export class AuthenticationService {
 
   constructor() { }
 
+  public isUserAuthenticated() {
+    return this.currentUser != null;
+  }
+
   login(userinfo: UserInfo): boolean {
     let result = false;
     const authorizeduser = this.userCredentials.filter(x => x.username == userinfo.username && userinfo.password == x.password);
