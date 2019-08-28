@@ -22,16 +22,17 @@ export class EmployeesListComponent implements OnInit {
   employees: Array<EmployeeExtended> = null;
 
   constructor(private employeeService: EmployeeService,
-  private authService: AuthenticationService,
+    private authService: AuthenticationService,
     private router: Router) { }
 
   ngOnInit() {
     let isUserAuthenticated = this.authService.isUserAuthenticated();
-    if(!isUserAuthenticated) {
+    if (!isUserAuthenticated) {
       console.log('User Redirected to authentication');
       this.router.navigate(['/']);
+    } else {
+      this.updateEmployeesList();
     }
-    this.updateEmployeesList();
   }
 
   updateEmployeesList() {
@@ -54,7 +55,7 @@ export class EmployeesListComponent implements OnInit {
 
   onUpdate(pEmpId) {
     let activeEmpEdit = this.employees.filter(x => x.editEnabled);
-    if(activeEmpEdit.length ==1 ) {
+    if (activeEmpEdit.length == 1) {
       this.onCancelUpdate(activeEmpEdit[0].id);
     }
     let emp = this.employees.filter(x => x.id == pEmpId);
@@ -95,7 +96,7 @@ export class EmployeesListComponent implements OnInit {
   }
 
   onKeyUp(eventargs, empid) {
-    if(eventargs.key=="Escape"){
+    if (eventargs.key == "Escape") {
       this.onCancelUpdate(empid);
     }
   }

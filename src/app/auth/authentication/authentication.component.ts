@@ -15,10 +15,13 @@ export class AuthenticationComponent implements OnInit {
     let isUserAuthenticated = this.authService.isUserAuthenticated();
     if (isUserAuthenticated) {
       this.router.navigate(['employeesList']);
+    } else {
+      // Open Login tab by default
     }
   }
 
   openTab(evt, tabName) {
+    console.log('OpenTab : '+ evt + tabName);
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {

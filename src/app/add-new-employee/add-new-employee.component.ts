@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { EmployeeService, Employee } from '../employee.service';
+import { AuthenticationService } from '../auth/authentication.service';
 
 @Component({
   selector: 'app-add-new-employee',
@@ -13,25 +14,30 @@ export class AddNewEmployeeComponent implements OnInit {
   inupdatemode = false;
   employeeId = null;
 
-  constructor(private route: ActivatedRoute, private employeeService: EmployeeService,
-    private router: Router) { }
+  constructor(private route: ActivatedRoute, private employeeService: EmployeeService, private authService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(
-      params => {
-        console.log(params);
-        const selectedEmployeeID = parseInt(params.get('employeeId'));
-        console.log(selectedEmployeeID);
-        if (selectedEmployeeID == -1) {
-          this.inupdatemode = false;
-          this.employee = new Employee();
-        } else {
-          this.inupdatemode = true;
-          this.employeeId = selectedEmployeeID;
-          this.readEmployeeDeatils(selectedEmployeeID);
+    let isUserAuthenticated = this.authService.isUserAuthenticated();
+    if (!isUserAuthenticated) {
+      console.log('User Redirected to authentication');
+      this.router.navigate(['/']);
+    } else {
+      this.route.paramMap.subscribe(
+        params => {
+          console.log(params);
+          const selectedEmployeeID = parseInt(params.get('employeeId'));
+          console.log(selectedEmployeeID);
+          if (selectedEmployeeID == -1) {
+            this.inupdatemode = false;
+            this.employee = new Employee();
+          } else {
+            this.inupdatemode = true;
+            this.employeeId = selectedEmployeeID;
+            this.readEmployeeDeatils(selectedEmployeeID);
+          }
         }
-      }
-    );
+      );
+    }
   }
 
   readEmployeeDeatils(paramEmpId) {
