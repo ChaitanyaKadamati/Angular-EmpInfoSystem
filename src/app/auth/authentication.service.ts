@@ -5,4 +5,9 @@ export class AuthenticationService {
 
   constructor() { }
 
+  login(){}
+
+  logout(){}
+
+  register(){ }
 }
