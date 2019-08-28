@@ -9,7 +9,7 @@ export class AuthenticationService {
   constructor() { }
 
   public isUserAuthenticated() {
-    return this.currentUser != null;
+    return this.currentUser == null;
   }
 
   login(userinfo: UserInfo): boolean {

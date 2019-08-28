@@ -12,25 +12,25 @@
 		<td>
       <span *ngIf="!e.editEnabled">{{e.firstname}}</span>
       <span *ngIf="e.editEnabled">
-        <input type="text" name="firstname" [(ngModel)]="e.employeeNewInfo.firstname">
+        <input type="text" name="firstname" [(ngModel)]="e.employeeNewInfo.firstname" (keyup)="onKeyUp($event,e.id)">
       </span>
     </td>
     <td>
       <span *ngIf="!e.editEnabled">{{e.lastname}}</span>
       <span *ngIf="e.editEnabled">
-        <input type="text" name="lastname" [(ngModel)]="e.employeeNewInfo.lastname">
+        <input type="text" name="lastname" [(ngModel)]="e.employeeNewInfo.lastname" (keyup)="onKeyUp($event,e.id)">
       </span>
     </td>
     <td>
       <span *ngIf="!e.editEnabled">{{e.mgrid}}</span>
       <span *ngIf="e.editEnabled">
-        <input type="text" name="mgrid" [(ngModel)]="e.employeeNewInfo.mgrid">
+        <input type="text" name="mgrid" [(ngModel)]="e.employeeNewInfo.mgrid" (keyup)="onKeyUp($event,e.id)">
       </span>
     </td>
     <td>
       <span *ngIf="!e.editEnabled">{{e.hiredate | date:'fullDate'}}</span>
       <span *ngIf="e.editEnabled">
-        <input type="text" name="hiredate" [(ngModel)]="e.employeeNewInfo.hiredate">
+        <input type="text" name="hiredate" [(ngModel)]="e.employeeNewInfo.hiredate" (keyup)="onKeyUp($event,e.id)">
       </span>
     </td>
     <td>

@@ -94,4 +94,10 @@ export class EmployeesListComponent implements OnInit {
     //console.log("Dblclicked - " + pEmpID);
     this.onUpdate(pEmpID);
   }
+
+  onKeyUp(eventargs, empid) {
+    if(eventargs.key=="Escape"){
+      this.onCancelUpdate(empid);
+    }
+  }
 }
