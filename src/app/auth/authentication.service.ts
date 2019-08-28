@@ -17,6 +17,7 @@ export class AuthenticationService {
     const authorizeduser = this.userCredentials.filter(x => x.username == userinfo.username && userinfo.password == x.password);
     if (authorizeduser.length == 1) {
       result = true;
+      this.currentUser = authorizeduser[0].username;
     }
     return result;
   }
