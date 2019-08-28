@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { NgMaterialsModule } from './material.module';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
@@ -10,8 +12,9 @@ import { AddNewEmployeeComponent } from './add-new-employee/add-new-employee.com
 import { AuthenticationComponent } from './auth/authentication/authentication.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { EmployeeService } from './employee.service';
+import { AuthenticationService } from './auth/authentication.service';
 
-import { NgMaterialsModule } from './material.module';
 @NgModule({
   declarations: [
     AppComponent, TopBarComponent, EmployeesListComponent, AddNewEmployeeComponent,
@@ -23,7 +26,7 @@ import { NgMaterialsModule } from './material.module';
     FormsModule,
     NgMaterialsModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ EmployeeService, AuthenticationService ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
