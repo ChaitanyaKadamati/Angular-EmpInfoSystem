@@ -1,18 +1,14 @@
-<div class="tab" >
-  <button class="tablinks" (click)="openTab(event, 'Login')">Login</button>
-  <button class="tablinks" (click)="openTab(event, 'Register')">Register</button>
+<div class="tab">
+	<button class="tablinks" (click)="openTab(event, 'Login' )" [class.active]="activeTab=='Login'">Login</button>
+  <button class="tablinks" (click)="openTab(event, 'Register')" [class.active]="activeTab=='Register'">Register</button>
 </div>
 
-<div id="Login" class="tabcontent">
+<div id="Login" class="tabcontent" >
   <h3>Login</h3>
   <app-login></app-login>
 </div>
 
-<div id="Register" class="tabcontent">
+<div id="Register" class="tabcontent" >
   <h3>Register</h3>
   <app-register></app-register>
 </div>
-
-<script>
-
-</script>

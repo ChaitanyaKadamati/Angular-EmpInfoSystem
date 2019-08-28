@@ -15,4 +15,7 @@ export class RegisterComponent implements OnInit {
 
   }
 
+  register(formData) {
+    this.authService.register({ username: formData.value.username, password: formData.value.password });
+  }
 }

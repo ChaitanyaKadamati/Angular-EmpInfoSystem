@@ -24,6 +24,7 @@ export class AuthenticationService {
   logout() { this.currentUser = null; }
 
   register(userinfo: UserInfo) {
+    console.log("Args : " + userinfo);
     let result = true;
     const authorizeduser = this.userCredentials.filter(x => x.username == userinfo.username && userinfo.password == x.password);
     if (authorizeduser.length == 1) {

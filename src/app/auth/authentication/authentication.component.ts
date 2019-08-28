@@ -8,7 +8,7 @@ import { AuthenticationService } from '../authentication.service';
   styleUrls: ['./authentication.component.css']
 })
 export class AuthenticationComponent implements OnInit {
-
+activeTab = '';
   constructor(private authService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
@@ -17,11 +17,12 @@ export class AuthenticationComponent implements OnInit {
       this.router.navigate(['employeesList']);
     } else {
       // Open Login tab by default
+      this.openTab(null,'Login');
     }
   }
 
   openTab(evt, tabName) {
-    console.log('OpenTab : '+ evt + tabName);
+    this.activeTab = tabName;
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -32,6 +33,6 @@ export class AuthenticationComponent implements OnInit {
       tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
     document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
+    //evt.currentTarget.className += " active";
   }
 }
