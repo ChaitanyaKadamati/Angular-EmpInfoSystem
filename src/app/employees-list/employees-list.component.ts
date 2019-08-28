@@ -28,7 +28,7 @@ export class EmployeesListComponent implements OnInit {
   ngOnInit() {
     let isUserAuthenticated = this.authService.isUserAuthenticated();
     if(!isUserAuthenticated) {
-      console.log('User Redirected to authentica');
+      console.log('User Redirected to authentication');
       this.router.navigate(['/']);
     }
     this.updateEmployeesList();
@@ -47,7 +47,7 @@ export class EmployeesListComponent implements OnInit {
       }, (err) => {
         console.log('Error : ' + err);
       }, () => {
-        console.log('Received ' + this.employees.length + ' elements.');
+        console.log('DB Response Count:' + this.employees.length);
       }
     );
   }
@@ -91,7 +91,6 @@ export class EmployeesListComponent implements OnInit {
   }
 
   doubleClick(pEmpID) {
-    //console.log("Dblclicked - " + pEmpID);
     this.onUpdate(pEmpID);
   }
 
