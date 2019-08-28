@@ -7,7 +7,7 @@ import { AuthenticationComponent } from './auth/authentication/authentication.co
 const routes: Routes = [
   { path: '', component: AuthenticationComponent },
   { path: 'employeesList', component: EmployeesListComponent },
-  { path: 'addNewEmployee/:employeeId', component: AddNewEmployeeComponent }
+  { path: 'addNewEmployee', component: AddNewEmployeeComponent }
 ];
 
 @NgModule({

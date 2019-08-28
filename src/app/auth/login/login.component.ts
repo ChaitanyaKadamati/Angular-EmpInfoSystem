@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   successfulLoginMessage = 'User Login Successfully.';
   failedLoginMessage = 'User Authentication Failed. Please try again.';  
 
-  constructor(private authService: AuthenticationService, router: Router) { }
+  constructor(private authService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     let result: boolean = this.authService.login({ username: formData.value.username, password: formData.value.password });
     if (result) {
       this.userInfoMessage = this.successfulLoginMessage;
-      this.router.navigate(['/']);
+      this.router.navigate(['employeesList']);
     } else {
       this.userInfoMessage = this.failedLoginMessage;
     }
