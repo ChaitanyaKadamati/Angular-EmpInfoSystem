@@ -45,6 +45,7 @@ export class EmployeesListComponent implements OnInit {
           tempEmployee.id = i.id;
           this.employees.push(tempEmployee);
         }
+        console.log(JSON.stringify(this.employees));
       }, (err) => {
         console.log('Error : ' + err);
       }, () => {
