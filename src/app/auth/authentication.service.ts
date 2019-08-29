@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class AuthenticationService {
-
+  public authChange = new Subject<boolean>();
   private currentUser: string = null;
   private userCredentials: Array<UserInfo> = [];
 
@@ -17,12 +18,16 @@ export class AuthenticationService {
     const authorizeduser = this.userCredentials.filter(x => x.username == userinfo.username && userinfo.password == x.password);
     if (authorizeduser.length == 1) {
       result = true;
+      this.authChange.next(true);
       this.currentUser = authorizeduser[0].username;
     }
     return result;
   }
 
-  logout() { this.currentUser = null; }
+  logout() {
+    this.currentUser = null;
+    this.authChange.next(false);
+  }
 
   register(userinfo: UserInfo) {
     console.log("Args : " + userinfo);

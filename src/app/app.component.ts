@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthenticationService) { }
 
   ngOnInit() {
+    this.authService.authChange.subscribe( x => this.isUserAuthorized = x);
     this.isUserAuthorized = this.authService.isUserAuthenticated();
   }
 }

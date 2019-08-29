@@ -21,8 +21,8 @@ export class AddNewEmployeeComponent implements OnInit {
       params => {
         console.log(params);
         const selectedEmployeeID = parseInt(params.get('employeeId'));
-        console.log(selectedEmployeeID);
-        if (selectedEmployeeID == null) {
+        console.log('EmpId : ' + selectedEmployeeID);
+        if (isNaN(selectedEmployeeID)) {
           this.inupdatemode = false;
           this.employee = new Employee();
         } else {
