@@ -26,13 +26,7 @@ export class EmployeesListComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    let isUserAuthenticated = this.authService.isUserAuthenticated();
-    if (!isUserAuthenticated) {
-      console.log('User Redirected to authentication');
-      this.router.navigate(['/']);
-    } else {
-      this.updateEmployeesList();
-    }
+    this.updateEmployeesList();
   }
 
   updateEmployeesList() {
@@ -45,7 +39,6 @@ export class EmployeesListComponent implements OnInit {
           tempEmployee.id = i.id;
           this.employees.push(tempEmployee);
         }
-        console.log(JSON.stringify(this.employees));
       }, (err) => {
         console.log('Error : ' + err);
       }, () => {

@@ -17,27 +17,21 @@ export class AddNewEmployeeComponent implements OnInit {
   constructor(private route: ActivatedRoute, private employeeService: EmployeeService, private authService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
-    let isUserAuthenticated = this.authService.isUserAuthenticated();
-    if (!isUserAuthenticated) {
-      console.log('User Redirected to authentication');
-      this.router.navigate(['/']);
-    } else {
-      this.route.paramMap.subscribe(
-        params => {
-          console.log(params);
-          const selectedEmployeeID = parseInt(params.get('employeeId'));
-          console.log(selectedEmployeeID);
-          if (selectedEmployeeID == -1) {
-            this.inupdatemode = false;
-            this.employee = new Employee();
-          } else {
-            this.inupdatemode = true;
-            this.employeeId = selectedEmployeeID;
-            this.readEmployeeDeatils(selectedEmployeeID);
-          }
+    this.route.paramMap.subscribe(
+      params => {
+        console.log(params);
+        const selectedEmployeeID = parseInt(params.get('employeeId'));
+        console.log(selectedEmployeeID);
+        if (selectedEmployeeID == null) {
+          this.inupdatemode = false;
+          this.employee = new Employee();
+        } else {
+          this.inupdatemode = true;
+          this.employeeId = selectedEmployeeID;
+          this.readEmployeeDeatils(selectedEmployeeID);
         }
-      );
-    }
+      }
+    );
   }
 
   readEmployeeDeatils(paramEmpId) {

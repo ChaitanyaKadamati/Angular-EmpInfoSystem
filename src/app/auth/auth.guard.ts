@@ -12,7 +12,7 @@ canActivate(route:ActivatedRouteSnapshot, state:RouterStateSnapshot) {
   if( this.authService.isUserAuthenticated() ){
     return true;
   } else {
-this.router.navigate(['']);
+this.router.navigate(['login']);
   }
 }
 }
