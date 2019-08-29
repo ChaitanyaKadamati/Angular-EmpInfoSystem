@@ -20,16 +20,18 @@ class EmployeeExtended extends Employee {
 })
 export class EmployeesListComponent implements OnInit {
   employees: Array<EmployeeExtended> = null;
-  private currentUserRole: string = null;
+  private isAdminRole: boolean = false;
 
   constructor(private employeeService: EmployeeService,
     private authService: AuthenticationService,
     private router: Router) { }
 
   ngOnInit() {
-    this.currentUserRole = this.authService.getUserRole();
+    console.log('EmpList.Init()');
+    this.isAdminRole = this.authService.getUserRole() == 'admin';
+    console.log('EmpList.currentUserRole()' + this.currentUserRole);
     this.authService.authChange.subscribe(x => {
-      this.currentUserRole = this.authService.getUserRole();
+      this.isAdminRole = this.authService.getUserRole() == 'admin';
     });
     this.updateEmployeesList();
   }
@@ -91,7 +93,7 @@ export class EmployeesListComponent implements OnInit {
   }
 
   doubleClick(pEmpID) {
-    if (this.currentUserRole == 'admin') {
+    if (this.isAdminRole) {
       this.onUpdate(pEmpID);
     }
   }

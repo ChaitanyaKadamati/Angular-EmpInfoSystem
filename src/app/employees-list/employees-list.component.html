@@ -1,3 +1,4 @@
+{{isAdminRole}}
 <table>
 	<tr>
 		<th>Emp ID</th>
@@ -5,7 +6,7 @@
 		<th>Last Name</th>
 		<th>Manager ID</th>
 		<th>Hire Date</th>
-		<th *ngIf="currentUseRole=='admin'">Update Action</th>
+		<th *ngIf="isAdminRole">Update Action</th>
 	</tr>
 	<tr *ngFor="let e of employees" (dblclick)="doubleClick(e.id)">
 		<td>{{e.id}}</td>
@@ -33,7 +34,7 @@
         <input type="text" name="hiredate" [(ngModel)]="e.employeeNewInfo.hiredate" (keyup)="onKeyUp($event,e.id)">
       </span>
     </td>
-    <td *ngIf="currentUseRole=='admin'">
+    <td *ngIf="isAdminRole">
       <button *ngIf="e.editEnabled" (click)="onCommitUpdate(e.id)" >Commit</button>
       <button *ngIf="e.editEnabled" (click)="onCancelUpdate(e.id)" >Cancel</button>
       <button *ngIf="!e.editEnabled" (click)="onUpdate(e.id)" >Update</button>

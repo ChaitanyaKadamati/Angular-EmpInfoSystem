@@ -14,13 +14,10 @@ export class TopBarComponent implements OnInit {
   constructor(private authService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
-    console.log('TopBar.OnInit()');
     this.currentUserRole = this.authService.getUserRole();
-    console.log('Current User : ' + this.currentUserRole);
     this.authService.authChange.subscribe(x => {
       if (x == true) {
         this.currentUserRole = this.authService.getUserRole();
-        console.log('Current User : ' + this.currentUserRole);
       }
     });
   }
