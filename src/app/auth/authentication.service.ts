@@ -6,6 +6,8 @@ export class AuthenticationService {
   public authChange = new Subject<boolean>();
   private currentUser: string = null;
   private userCredentials: Array<UserInfo> = [];
+  private userRole: string = '';
+  private adminCredentials = { username: 'admin', password: 'admin' };
 
   constructor() { }
 
@@ -13,14 +15,23 @@ export class AuthenticationService {
     return this.currentUser != null;
   }
 
+  public getUserRole() {
+    return this.userRole;
+  }
+
   login(userinfo: UserInfo): boolean {
     let result = false;
     const authorizeduser = this.userCredentials.filter(x => x.username == userinfo.username && userinfo.password == x.password);
     if (authorizeduser.length == 1) {
       result = true;
-      this.authChange.next(true);
       this.currentUser = authorizeduser[0].username;
+      this.userRole = 'employee';
+    } else if (userinfo.username == this.adminCredentials.username && userinfo.password == this.adminCredentials.password) {
+      result = true;
+      this.currentUser = this.adminCredentials.username;
+      this.userRole = 'admin';
     }
+    this.authChange.next(result);
     return result;
   }
 

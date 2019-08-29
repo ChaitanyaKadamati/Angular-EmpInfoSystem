@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthenticationService } from '../auth/authentication.service';
@@ -8,9 +8,22 @@ import { AuthenticationService } from '../auth/authentication.service';
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.css']
 })
-export class TopBarComponent {
+export class TopBarComponent implements OnInit {
+  currentUserRole: string = null;
 
   constructor(private authService: AuthenticationService, private router: Router) { }
+
+  ngOnInit() {
+    console.log('TopBar.OnInit()');
+    this.currentUserRole = this.authService.getUserRole();
+    console.log('Current User : ' + this.currentUserRole);
+    this.authService.authChange.subscribe(x => {
+      if (x == true) {
+        this.currentUserRole = this.authService.getUserRole();
+        console.log('Current User : ' + this.currentUserRole);
+      }
+    });
+  }
 
   logout() {
     this.authService.logout();
